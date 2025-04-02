@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace PortfolioAPI.Models.ThinkMovesAIModels
+﻿namespace PortfolioAPI.Models.ThinkMovesAIModels
 {
     public class ThinkMovesRequest
     {

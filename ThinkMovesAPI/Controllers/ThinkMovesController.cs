@@ -31,6 +31,7 @@ namespace ThinkMovesAPI.Controllers
         //4. Saving User Details
 
         [HttpPost("ThinkMovesAI")]
+        [Consumes("multipart/form-data")]
         public async Task<ThinkMovesResponse> ThinkMovesAI([FromForm] ThinkMovesRequest thinkMovesAIRequest) => await _thinkMovesAIService.ThinkMovesAIAsync(thinkMovesAIRequest);
 
 
