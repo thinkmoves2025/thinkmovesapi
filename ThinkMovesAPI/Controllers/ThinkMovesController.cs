@@ -27,12 +27,18 @@ namespace ThinkMovesAPI.Controllers
 
         //Everything below is related to the user.
         //2. Save Game button
-        //3. Save Position button
+        //3. Save Position button   
         //4. Saving User Details
 
         [HttpPost("ThinkMovesAI")]
         [Consumes("multipart/form-data")]
-        public async Task<ThinkMovesResponse> ThinkMovesAI([FromForm] ThinkMovesRequest thinkMovesAIRequest) => await _thinkMovesAIService.ThinkMovesAIAsync(thinkMovesAIRequest);
+        public async Task<ThinkMovesResponse> ThinkMovesAI([FromForm] List<IFormFile> gameImages) { 
+        
+        ThinkMovesResponse thinkMovesResponse = new ThinkMovesResponse();
+            thinkMovesResponse.response = "Images Received";
+        return thinkMovesResponse;
+        
+        }
 
 
         [HttpPost("SaveChessGame")]
