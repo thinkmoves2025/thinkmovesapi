@@ -29,7 +29,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins()
+        policy.WithOrigins("https://master.d4y91muqqwcmp.amplifyapp.com/")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
