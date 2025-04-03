@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using PortfolioAPI.Models.ThinkMovesAIModels;
-using PortfolioAPI.Services.Interfaces;
+using ThinkMovesAPI.Models;
 using ThinkMovesAPI.Models.SaveChessGameModels;
 using ThinkMovesAPI.Services.Interface;
 using ThinkMovesAPI.Models.SaveChessPositionModels;
+using ThinkMovesAPI.Models.ThinkMovesAIModels;
+using ThinkMovesAPI.Services.Interfaces;
 
 namespace ThinkMovesAPI.Controllers
 {
@@ -32,11 +33,13 @@ namespace ThinkMovesAPI.Controllers
 
         [HttpPost("ThinkMovesAI")]
         [Consumes("multipart/form-data")]
-        public async Task<ThinkMovesResponse> ThinkMovesAI([FromForm] List<IFormFile> gameImages) { 
+        public async Task<ThinkMovesResponse> ThinkMovesAI([FromForm(Name = "ScanImages")] List<IFormFile> gameImages) { 
         
         ThinkMovesResponse thinkMovesResponse = new ThinkMovesResponse();
-            thinkMovesResponse.response = "Images Received";
-        return thinkMovesResponse;
+
+            thinkMovesResponse = await _thinkMovesAIService.ThinkMovesAIAsync(gameImages);
+            //thinkMovesResponse.response = "Images Received";
+            return thinkMovesResponse;
         
         }
 

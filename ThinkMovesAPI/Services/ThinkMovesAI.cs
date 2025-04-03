@@ -1,9 +1,9 @@
 ﻿using ThinkMovesAPI.Models;
 using Amazon.Runtime;
 using Amazon.Textract;
-using PortfolioAPI.Models.HelperFuncModels;
-using PortfolioAPI.Models.ThinkMovesAIModels;
-using PortfolioAPI.Services.Interfaces;
+using ThinkMovesAPI.Models.HelperFuncModels;
+using ThinkMovesAPI.Models.ThinkMovesAIModels;
+using ThinkMovesAPI.Services.Interfaces;
 using System.Threading.Tasks;
 using Amazon.Lambda.Model;
 using Amazon.Lambda;
@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using ThinkMovesAPI.Models.HelperFuncModels;
 
 
-namespace PortfolioAPI.Services
+namespace ThinkMovesAPI.Services
 {
 
     public class ThinkMovesAI : IThinkMovesAI
@@ -31,7 +31,7 @@ namespace PortfolioAPI.Services
         //and return the response
 
 
-        public async Task<ThinkMovesResponse> ThinkMovesAIAsync(ThinkMovesRequest thinkMovesAIRequest)
+        public async Task<ThinkMovesResponse> ThinkMovesAIAsync(List<IFormFile> gameImages)
         {
             ThinkMovesResponse thinkMovesAIResponse = new ThinkMovesResponse();
 
@@ -40,7 +40,7 @@ namespace PortfolioAPI.Services
 
             //Check if images are null
 
-            if (thinkMovesAIRequest.ScanImages == null || thinkMovesAIRequest.ScanImages.Count == 0)
+            if (gameImages == null || gameImages.Count == 0)
             {
                 thinkMovesAIResponse.Errors.Add("No images were uploaded.");
                 return thinkMovesAIResponse;
@@ -52,7 +52,7 @@ namespace PortfolioAPI.Services
             else
             {
                 ScanImagesHFRequest scanImagesHFRequest = new ScanImagesHFRequest();
-                scanImagesHFRequest.ScanImagesHFReqVar = thinkMovesAIRequest.ScanImages;
+                scanImagesHFRequest.ScanImagesHFReqVar = gameImages;
 
 
                 //This function will scan the images and read the text and pgn format of the game.
@@ -78,7 +78,7 @@ namespace PortfolioAPI.Services
 
                     if (lambdaAndCombineResponse.Errors.Count == 0)
                     {
-                       thinkMovesAIResponse.response = lambdaAndCombineResponse.response;
+                       thinkMovesAIResponse.response =  lambdaAndCombineResponse.response;
                     }
 
                     else

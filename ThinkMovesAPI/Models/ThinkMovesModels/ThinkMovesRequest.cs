@@ -1,4 +1,4 @@
-﻿namespace PortfolioAPI.Models.ThinkMovesAIModels
+﻿namespace ThinkMovesAPI.Models.ThinkMovesAIModels
 {
     public class ThinkMovesRequest
     {

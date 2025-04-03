@@ -1,5 +1,5 @@
-using PortfolioAPI.Services.Interfaces;
-using PortfolioAPI.Services;
+using ThinkMovesAPI.Services.Interfaces;
+using ThinkMovesAPI.Services;
 using ThinkMovesAPI.Services.Interface;
 using ThinkMovesAPI.Services;
 using Amazon.DynamoDBv2.DataModel;
@@ -25,6 +25,18 @@ builder.Services.AddScoped<ISaveChessGame, SaveChessGame>();
 builder.Services.AddScoped<ISaveChessPosition, SaveChessPosition>();
 builder.Services.AddScoped<IHelperFuncService, HelperFuncService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,5 +51,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(); // or app.UseCors("YourPolicyName");
 
 app.Run();

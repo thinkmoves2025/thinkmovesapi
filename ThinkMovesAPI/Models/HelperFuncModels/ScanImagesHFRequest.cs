@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 
 
-namespace PortfolioAPI.Models.HelperFuncModels;
+namespace ThinkMovesAPI.Models.HelperFuncModels;
 
 public class ScanImagesHFRequest
     {

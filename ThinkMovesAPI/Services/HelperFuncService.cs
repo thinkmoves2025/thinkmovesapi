@@ -4,8 +4,8 @@ using Amazon.Runtime;
 using Amazon.Textract;
 using Amazon.Textract.Model;
 using Newtonsoft.Json;
-using PortfolioAPI.Models.HelperFuncModels;
-using PortfolioAPI.Services.Interfaces;
+using ThinkMovesAPI.Models.HelperFuncModels;
+using ThinkMovesAPI.Services.Interfaces;
 using System.Text;
 using Amazon.Lambda;
 using Amazon.Lambda.Model;
@@ -18,7 +18,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 
 
-namespace PortfolioAPI.Services
+namespace ThinkMovesAPI.Services
 {
     public class HelperFuncService : IHelperFuncService
     {

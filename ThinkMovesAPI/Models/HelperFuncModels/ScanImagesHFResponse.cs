@@ -1,6 +1,6 @@
 ﻿using Amazon.Textract.Model;
 
-namespace PortfolioAPI.Models.HelperFuncModels
+namespace ThinkMovesAPI.Models.HelperFuncModels
 {
     public class ScanImagesHFResponse
     {

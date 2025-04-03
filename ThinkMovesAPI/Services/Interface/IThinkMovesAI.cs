@@ -1,11 +1,11 @@
-﻿using PortfolioAPI.Models.ThinkMovesAIModels;
+﻿using ThinkMovesAPI.Models.ThinkMovesAIModels;
 using System.Threading.Tasks;
 using ThinkMovesAPI.Models;
 
-namespace PortfolioAPI.Services.Interfaces
+namespace ThinkMovesAPI.Services.Interfaces
 {
     public interface IThinkMovesAI
     {
-        Task<ThinkMovesResponse> ThinkMovesAIAsync(ThinkMovesRequest thinkMovesAIRequest);
+        Task<ThinkMovesResponse> ThinkMovesAIAsync(List<IFormFile> gameImages);
     }
 }

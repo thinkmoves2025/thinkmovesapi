@@ -1,6 +1,6 @@
 ﻿using ThinkMovesAPI.Models;
-using PortfolioAPI.Models.HelperFuncModels;
-namespace PortfolioAPI.Services.Interfaces;
+using ThinkMovesAPI.Models.HelperFuncModels;
+namespace ThinkMovesAPI.Services.Interfaces;
 
 using Amazon.Textract.Model;
 using System.Threading.Tasks;
