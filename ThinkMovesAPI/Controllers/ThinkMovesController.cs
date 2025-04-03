@@ -32,8 +32,8 @@ namespace ThinkMovesAPI.Controllers
         //4. Saving User Details
 
         [HttpPost("ThinkMovesAI")]
-        [Consumes("multipart/form-data")]
-        public async Task<ThinkMovesResponse> ThinkMovesAI([FromForm(Name = "ScanImages")] List<IFormFile> gameImages) { 
+        //[Consumes("multipart/form-data")]
+        public async Task<ThinkMovesResponse> ThinkMovesAI([FromForm] List<IFormFile> gameImages) { 
         
         ThinkMovesResponse thinkMovesResponse = new ThinkMovesResponse();
 
