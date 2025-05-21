@@ -1,10 +1,8 @@
 using ThinkMovesAPI.Services.Interfaces;
 using ThinkMovesAPI.Services;
 using ThinkMovesAPI.Services.Interface;
-using ThinkMovesAPI.Services;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2;
-using Amazon.Extensions.NETCore.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,13 +15,19 @@ builder.Services.AddSwaggerGen();
 
 //var awsOptions = builder.Configuration.GetSection("AWS").Get<AWSOptions>();
 //builder.Services.AddDefaultAWSOptions(awsOptions);
-builder.Services.AddAWSService<IAmazonDynamoDB>();
+//builder.Services.AddAWSService<IAmazonDynamoDB>();
 builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
+builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
+    new AmazonDynamoDBClient(new AmazonDynamoDBConfig
+    {
+        RegionEndpoint = Amazon.RegionEndpoint.USEast1
+    }));
 
 builder.Services.AddScoped<IThinkMovesAI, ThinkMovesAI>();
-builder.Services.AddScoped<ISaveChessGame, SaveChessGame>();
-builder.Services.AddScoped<ISaveChessPosition, SaveChessPosition>();
+builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<IPositionService, PositionService>();
 builder.Services.AddScoped<IHelperFuncService, HelperFuncService>();
+builder.Services.AddScoped<IPlayerService, PlayerService>();
 
 builder.Services.AddCors(options =>
 {

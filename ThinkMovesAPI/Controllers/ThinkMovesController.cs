@@ -13,14 +13,14 @@ namespace ThinkMovesAPI.Controllers
     public class ThinkMovesController : Controller
     {
         private IThinkMovesAI _thinkMovesAIService;
-        private ISaveChessGame _saveChessGameService;
-        private ISaveChessPosition _saveChessPositionService;
+        private IGameService _gameService;
+        private IPositionService _positionService;
 
-        public ThinkMovesController(IThinkMovesAI thinkMovesAIService, ISaveChessGame saveChessGameService, ISaveChessPosition saveChessPosition)
+        public ThinkMovesController(IThinkMovesAI thinkMovesAIService, IGameService gameService, IPositionService positionService)
         {           
             this._thinkMovesAIService = thinkMovesAIService;
-            this._saveChessGameService = saveChessGameService;
-            this._saveChessPositionService = saveChessPosition;
+            this._gameService = gameService;
+            this._positionService =positionService;
         }
 
         //For now I can think of 4 endpoints
@@ -45,11 +45,11 @@ namespace ThinkMovesAPI.Controllers
 
 
         [HttpPost("SaveChessGame")]
-        public async Task<SaveChessGameResponse> SaveChessGame(SaveChessGameRequest saveChessGameRequest) => await _saveChessGameService.SaveGameAsync(saveChessGameRequest);
+        public async Task<SaveChessGameResponse> SaveChessGame(SaveChessGameRequest saveChessGameRequest) => await _gameService.SaveGameAsync(saveChessGameRequest);
 
 
         [HttpPost("SaveChessPosition")]
-        public async Task<SaveChessPositionResponse> SaveChessPosition(SaveChessPositionRequest saveChessPositionRequest) => await _saveChessPositionService.SavePositionAsync(saveChessPositionRequest);
+        public async Task<SaveChessPositionResponse> SaveChessPosition(SaveChessPositionRequest saveChessPositionRequest) => await _positionService.SavePositionAsync(saveChessPositionRequest);
 
     }
 }

@@ -1,17 +1,16 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
-using ThinkMovesAPI.Models;
 using ThinkMovesAPI.Models.SaveChessGameModels;
-using ThinkMovesAPI.Models.SaveChessPositionModels;
 using ThinkMovesAPI.Models.TableSchemas;
 using ThinkMovesAPI.Services.Interface;
 
 namespace ThinkMovesAPI.Services
+
 {
-    public class SaveChessGame : ISaveChessGame
+    public class GameService : IGameService
     {
         private readonly IDynamoDBContext _dynamoDBContext;
 
-        public SaveChessGame(IDynamoDBContext dynamoDBContext)
+        public GameService(IDynamoDBContext dynamoDBContext)
         {
             _dynamoDBContext = dynamoDBContext;
         }
@@ -22,7 +21,7 @@ namespace ThinkMovesAPI.Services
             GamesTable gamesTable = new GamesTable();
 
             gamesTable = saveChessGameRequest.gamesTable;
-           
+
 
             try
             {

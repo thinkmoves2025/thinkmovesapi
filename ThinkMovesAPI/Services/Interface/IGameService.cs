@@ -2,7 +2,7 @@
 
 namespace ThinkMovesAPI.Services.Interface
 {
-    public interface ISaveChessGame
+    public interface IGameService
     {
         Task<SaveChessGameResponse> SaveGameAsync(SaveChessGameRequest saveChessGameRequest);
     }

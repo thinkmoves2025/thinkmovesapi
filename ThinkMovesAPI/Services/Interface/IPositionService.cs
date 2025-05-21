@@ -1,9 +1,8 @@
-﻿using Amazon.DynamoDBv2.DataModel;
-using ThinkMovesAPI.Models.SaveChessPositionModels;
+﻿using ThinkMovesAPI.Models.SaveChessPositionModels;
 
 namespace ThinkMovesAPI.Services.Interface
 {
-    public interface ISaveChessPosition
+    public interface IPositionService
     {
         Task<SaveChessPositionResponse> SavePositionAsync(SaveChessPositionRequest saveChessPositionRequest);
     }

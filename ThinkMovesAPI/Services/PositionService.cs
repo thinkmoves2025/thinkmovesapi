@@ -1,15 +1,15 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
-using ThinkMovesAPI.Models.TableSchemas;
 using ThinkMovesAPI.Models.SaveChessPositionModels;
+using ThinkMovesAPI.Models.TableSchemas;
 using ThinkMovesAPI.Services.Interface;
 
 namespace ThinkMovesAPI.Services
 {
-    public class SaveChessPosition : ISaveChessPosition
+    public class PositionService : IPositionService
     {
         private readonly IDynamoDBContext _dynamoDBContext;
 
-        public SaveChessPosition(IDynamoDBContext dynamoDBContext)
+        public PositionService(IDynamoDBContext dynamoDBContext)
         {
             _dynamoDBContext = dynamoDBContext;
         }
@@ -25,10 +25,11 @@ namespace ThinkMovesAPI.Services
             {
                 await _dynamoDBContext.SaveAsync(positionsTable);
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 saveChessPositionResponse.saveChessPosRespVar = "Error saving position: " + ex.Message;
                 return saveChessPositionResponse;
-            
+
             }
 
             saveChessPositionResponse.saveChessPosRespVar = "Position saved successfully";

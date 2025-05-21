@@ -1,15 +1,7 @@
 ﻿using ThinkMovesAPI.Models;
-using Amazon.Runtime;
-using Amazon.Textract;
 using ThinkMovesAPI.Models.HelperFuncModels;
 using ThinkMovesAPI.Models.ThinkMovesAIModels;
 using ThinkMovesAPI.Services.Interfaces;
-using System.Threading.Tasks;
-using Amazon.Lambda.Model;
-using Amazon.Lambda;
-using Newtonsoft.Json;
-using ThinkMovesAPI.Models.HelperFuncModels;
-
 
 namespace ThinkMovesAPI.Services
 {
@@ -85,7 +77,6 @@ namespace ThinkMovesAPI.Services
                     {
                         thinkMovesAIResponse.Errors = lambdaAndCombineResponse.Errors;
                     }
-
 
                 }
                 return thinkMovesAIResponse;
